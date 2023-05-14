@@ -1,0 +1,5 @@
+default_roles:
+  - zsh
+  - oh-my-zsh
+  - utils
+  - oh-my-tmux

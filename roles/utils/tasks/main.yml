@@ -1,0 +1,11 @@
+---
+- name: Install basic utilities
+  ansible.builtin.package:
+    name:
+      - bat
+      - htop
+      - lazygit
+      - nnn
+      - ripgrep
+      - tmux
+    state: latest
