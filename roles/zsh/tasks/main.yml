@@ -9,6 +9,6 @@
 - name: Set default
   user:
     name: "{{ ansible_env['USER'] }}"
-    shell: /usr/bin/zsh
+    shell: /bin/zsh
   become: yes
 
