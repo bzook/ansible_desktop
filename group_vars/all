@@ -3,3 +3,4 @@ default_roles:
   - oh-my-zsh
   - utils
   - oh-my-tmux
+  - neovim
