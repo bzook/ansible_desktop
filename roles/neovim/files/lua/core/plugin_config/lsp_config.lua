@@ -1,6 +1,7 @@
 require("mason-lspconfig").setup()
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local opts = { noremap = true, silent = true }
 
 require('lspsaga').setup({
   code_action_icon = "💡",
@@ -35,10 +36,15 @@ require("lspconfig").lua_ls.setup {
   }
 }
 
-require("lspconfig").solargraph.setup {
+require("lspconfig").intelephense.setup({
   capabilities = capabilities,
-}
-
-require("lspconfig").pyright.setup {
-  capabilities = capabilities,
-}
+  on_attach = function(_, bufnr)
+    -- Enable (omnifunc) completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    -- Here we should add additional keymaps and configuration options.
+  end,
+  flags = {
+    debounce_text_changes = 150,
+  }
+})
